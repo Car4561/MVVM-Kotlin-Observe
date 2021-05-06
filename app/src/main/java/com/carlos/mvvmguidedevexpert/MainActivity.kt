@@ -20,7 +20,7 @@ import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModelMain: MainViewModel
 
     private lateinit var binding : ActivityMainBinding
 
@@ -30,28 +30,30 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this).get()
 
-        viewModel.progressVisibiliy.observe(this, Observer {
-//            when(it){
-//                 true -> binding.progress.visibility = View.VISIBLE
-//                 false -> binding.progress.visibility = View.GONE
+        viewModelMain = ViewModelProvider(this).get()
+//
+//        viewModel.progressVisibiliy.observe(this, Observer {
+////            when(it){
+////                 true -> binding.progress.visibility = View.VISIBLE
+////                 false -> binding.progress.visibility = View.GONE
+////            }
+//            binding.progress.visibility = it
+//        })
+//        viewModel.message.observe(this, Observer {
+//            binding.message.text = it
+//        })
+        binding.viewModel = viewModelMain
+        binding.lifecycleOwner = this
+
+//        with(binding){
+//            button.setOnClickListener{
+//                viewModelMain.onButtonClicked(user.text.toString(),pass.text.toString());
 //            }
-            binding.progress.visibility = it
-        })
-        viewModel.message.observe(this, Observer {
-            binding.message.text = it
-        })
-
-
-        with(binding){
-            button.setOnClickListener{
-                viewModel.onButtonClicked(user.text.toString(),pass.text.toString());
-            }
-        }
+//        }
     }
 
-     fun setProgressVisible(boolean: Boolean) {
+    fun setProgressVisible(boolean: Boolean) {
 //        when(boolean){
 //            true -> binding.progress.visibility = View.VISIBLE
 //            false -> binding.progress.visibility = View.GONE
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-     fun setMessage(message: String) {
+    fun setMessage(message: String) {
         binding.message.text = message
     }
 
