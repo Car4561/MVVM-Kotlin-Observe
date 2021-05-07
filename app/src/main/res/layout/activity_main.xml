@@ -58,8 +58,18 @@
             <ProgressBar
                 android:id="@+id/progress"
                 android:visibility="@{viewModel.progressVisibility ? View.VISIBLE : View.GONE}"
+                app:visible="@{viewModel.progressVisibility}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
+            <ImageView
+                android:maxHeight="300dp"
+                android:maxWidth="300dp"
+                android:adjustViewBounds="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:url="@{viewModel.url}"
+                android:contentDescription="asd" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
